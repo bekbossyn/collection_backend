@@ -1,4 +1,4 @@
-from core.models import TokenLog
+from user.models import TokenLog
 
 from django.conf import settings
 from django.contrib.auth import get_user_model

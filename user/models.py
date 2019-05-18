@@ -204,6 +204,23 @@ class MainUser(AbstractBaseUser, PermissionsMixin):
     #     super(MainUser, self).save(*args, **kwargs)
 
 
+class TokenLog(models.Model):
+    """
+    Token log model
+    """
+    token = models.CharField(max_length=500, blank=False, null=False)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='tokens', null=False, on_delete=models.CASCADE)
+    active = models.BooleanField(default=True)
+
+    def __str__(self):
+        return u"Token {0} of user {1}".format(self.pk, self.user_id)
+
+    class Meta:
+        index_together = [
+            ["token", "user"]
+        ]
+
+
 # @receiver(post_save, sender=MainUser)
 # def create_game_settings(sender, instance, **kwargs):
 #     """

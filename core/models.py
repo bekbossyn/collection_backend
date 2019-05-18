@@ -19,23 +19,6 @@ from utils.messages import REGISTRATION_COMPLETE, PASSWORD_EMAIL_RESET
 from utils.upload import avatar_upload_v2, get_random_name
 
 
-class TokenLog(models.Model):
-    """
-    Token log model
-    """
-    token = models.CharField(max_length=500, blank=False, null=False)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='tokens', null=False, on_delete=models.CASCADE)
-    active = models.BooleanField(default=True)
-
-    def __str__(self):
-        return u"Token {0} of user {1}".format(self.pk, self.user_id)
-
-    class Meta:
-        index_together = [
-            ["token", "user"]
-        ]
-
-
 class ActivationManager(models.Manager):
     """
     Custom manager for Activation model

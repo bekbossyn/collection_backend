@@ -4,7 +4,7 @@ from django.contrib.auth.admin import UserAdmin
 from .forms import MainUserChangeForm, MainUserCreationForm
 
 # from .models import MainUser, GameSetting
-from .models import MainUser
+from .models import MainUser, TokenLog
 
 
 @admin.register(MainUser)
@@ -51,6 +51,10 @@ class MainUserAdmin(UserAdmin):
         ('Permissions', {'fields': ('is_active', 'is_admin', )}),
     )
 
+
+@admin.register(TokenLog)
+class TokenLogAdmin(admin.ModelAdmin):
+    list_display = ('id', 'token', 'user', 'active',)
 
 # @admin.register(GameSetting)
 # class ActivationAdmin(admin.ModelAdmin):
