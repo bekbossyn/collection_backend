@@ -26,8 +26,6 @@ urlpatterns = [
 
     url(r'^reset_email_password/$', views.reset_email_password, name='reset_email_password'),
     url(r'^reset_email_password_complete/$', views.reset_email_password_complete, name='reset_email_password_complete'),
-    url(r'^converter/$', views.converter, name='converter'),
-    url(r'^converter_v2/$', views.converter_v2, name='converter_v2'),
 
     # url(r'^facebook_login/$', views.facebook_login, name='facebook_login'),
     # url(r'^insta_login/$', views.insta_login, name='insta_login'),
