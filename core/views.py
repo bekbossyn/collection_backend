@@ -54,6 +54,7 @@ def email_sign_up(email, password):
     if User.objects.filter(email=email).exists():
         return None, http.code_response(code=codes.BAD_REQUEST,
                                         message=messages.EMAIL_ALREADY_EXISTS)
+    # TODO making user=True is not the solution, solve this issue later.
     Activation.objects.filter(
         email=email, to_reset=False,
         to_change_phone=False, to_change_email=False, used=False).update(used=True)

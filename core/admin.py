@@ -24,7 +24,4 @@ class ExchangeAdmin(admin.ModelAdmin):
 class ExchangeAdmin(admin.ModelAdmin):
     list_display = ('id', 'token', 'user', 'active',)
 
-    list_filter = ('data_and_time',)
-
-    ordering = ('-timestamp',)
 
