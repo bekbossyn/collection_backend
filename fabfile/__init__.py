@@ -6,7 +6,7 @@ from fabric.decorators import task
 env.repository = "https://github.com/bekbossyn/collection_backend.git"
 env.repo_name = "collection_backend"
 env.hosts = ["188.166.17.34"]
-env.user = "dev"
+env.user = "root"
 env.password = "Truesight7"
 
 
