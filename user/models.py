@@ -117,7 +117,7 @@ class MainUser(AbstractBaseUser, PermissionsMixin):
                 "review": self.review if self.review else None,
                 # "reviews": [r.json(user) for r in self.reviews.all()],
                 "verified": self.verified(),
-                'game_setting': self.game_setting.json(user),
+                # 'game_setting': self.game_setting.json(user),
             }
         else:
             result = {
@@ -144,7 +144,7 @@ class MainUser(AbstractBaseUser, PermissionsMixin):
                 "review": self.review if self.review else None,
                 # "reviews": [r.json(user=self) for r in self.reviews.all()],
                 "verified": self.verified(),
-                'game_setting': self.game_setting.json(),
+                # 'game_setting': self.game_setting.json(),
             }
         else:
             result = {
@@ -204,40 +204,40 @@ class MainUser(AbstractBaseUser, PermissionsMixin):
     #     super(MainUser, self).save(*args, **kwargs)
 
 
-@receiver(post_save, sender=MainUser)
-def create_game_settings(sender, instance, **kwargs):
-    """
-        Create game_settings for the user, if does not exist
-    """
-    _ = GameSetting.objects.get_or_create(owner=instance)
+# @receiver(post_save, sender=MainUser)
+# def create_game_settings(sender, instance, **kwargs):
+#     """
+#         Create game_settings for the user, if does not exist
+#     """
+#     _ = GameSetting.objects.get_or_create(owner=instance)
 
 
-class GameSetting(models.Model):
-    owner = models.OneToOneField(settings.AUTH_USER_MODEL, related_name='game_setting', null=False, on_delete=models.CASCADE)
-    on_save = models.IntegerField(choices=ON_SAVE, default=ON_SAVE_SUM_30)
-    on_full = models.IntegerField(choices=ON_FULL, default=ON_FULL_OPEN_FOUR)
-    ace_allowed = models.BooleanField(default=True)
-    on_eggs = models.IntegerField(choices=ON_EGGS, default=ON_EGGS_OPEN_FOUR)
-    timestamp = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return u"Game setting {0} of user {1}".format(self.pk, self.owner_id)
-
-    def json(self, user=None):
-        return {
-            "setting_id": self.pk,
-            "user_id": self.owner_id,
-            "on_save": self.on_save,
-            "on_save_display": self.get_on_save_display(),
-            "on_full": self.on_full,
-            "on_full_display": self.get_on_full_display(),
-            "ace_allowed": self.ace_allowed,
-            "on_eggs": self.on_eggs,
-            "on_eggs_display": self.get_on_eggs_display(),
-            "timestamp": dt_to_timestamp(self.timestamp),
-        }
-
-    class Meta:
-        ordering = ['timestamp']
+# class GameSetting(models.Model):
+#     owner = models.OneToOneField(settings.AUTH_USER_MODEL, related_name='game_setting', null=False, on_delete=models.CASCADE)
+#     on_save = models.IntegerField(choices=ON_SAVE, default=ON_SAVE_SUM_30)
+#     on_full = models.IntegerField(choices=ON_FULL, default=ON_FULL_OPEN_FOUR)
+#     ace_allowed = models.BooleanField(default=True)
+#     on_eggs = models.IntegerField(choices=ON_EGGS, default=ON_EGGS_OPEN_FOUR)
+#     timestamp = models.DateTimeField(auto_now_add=True)
+#
+#     def __str__(self):
+#         return u"Game setting {0} of user {1}".format(self.pk, self.owner_id)
+#
+#     def json(self, user=None):
+#         return {
+#             "setting_id": self.pk,
+#             "user_id": self.owner_id,
+#             "on_save": self.on_save,
+#             "on_save_display": self.get_on_save_display(),
+#             "on_full": self.on_full,
+#             "on_full_display": self.get_on_full_display(),
+#             "ace_allowed": self.ace_allowed,
+#             "on_eggs": self.on_eggs,
+#             "on_eggs_display": self.get_on_eggs_display(),
+#             "timestamp": dt_to_timestamp(self.timestamp),
+#         }
+#
+#     class Meta:
+#         ordering = ['timestamp']
 
 

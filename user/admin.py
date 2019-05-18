@@ -3,7 +3,8 @@ from django.contrib.auth.admin import UserAdmin
 
 from .forms import MainUserChangeForm, MainUserCreationForm
 
-from .models import MainUser, GameSetting
+# from .models import MainUser, GameSetting
+from .models import MainUser
 
 
 @admin.register(MainUser)
@@ -51,9 +52,9 @@ class MainUserAdmin(UserAdmin):
     )
 
 
-@admin.register(GameSetting)
-class ActivationAdmin(admin.ModelAdmin):
-    list_display = ('id', 'owner', 'on_save', 'on_full', 'ace_allowed', 'on_eggs', 'timestamp',)
-
-    list_filter = ('on_save', 'on_full', 'ace_allowed', 'on_eggs',)
+# @admin.register(GameSetting)
+# class ActivationAdmin(admin.ModelAdmin):
+#     list_display = ('id', 'owner', 'on_save', 'on_full', 'ace_allowed', 'on_eggs', 'timestamp',)
+#
+#     list_filter = ('on_save', 'on_full', 'ace_allowed', 'on_eggs',)
 
