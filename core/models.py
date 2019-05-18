@@ -41,6 +41,15 @@ class ActivationManager(models.Manager):
     Custom manager for Activation model
     """
 
+    def random_code(self, length):
+        # code = "%0.4d" % random.randint(0, 9999)
+        a = pow(10, length - 1)
+        b = 0
+        for x in range(length):
+            b = b * 10 + 9
+        code = random.randint(a, b)
+        return code
+
     def create_social_code(self, email, phone, password):
         """
         Creates activation code and sends SMS via mobizon.kz service.
@@ -48,8 +57,7 @@ class ActivationManager(models.Manager):
         TODO: Logging
         """
         # code = "4512"
-        code = "1111"
-        code = random.randint(1000, 9999)
+        code = self.random_code(settings.CODE_LENGTH)
         activation = Activation(phone=phone,
                                 email=email,
                                 to_reset=False,
@@ -64,9 +72,7 @@ class ActivationManager(models.Manager):
         Stores hashed password.
         TODO: Logging
         """
-        # code = "%0.4d" % random.randint(0, 9999)
-        code = "1111"
-        code = random.randint(1000, 9999)
+        code = self.random_code(settings.CODE_LENGTH)
         activation = Activation(email=email,
                                 to_reset=False,
                                 password=make_password(password),
@@ -75,8 +81,7 @@ class ActivationManager(models.Manager):
         return activation
 
     def create_email_reset_code(self, email, new_password):
-        code = "1111"
-        code = random.randint(1000, 9999)
+        code = self.random_code(settings.CODE_LENGTH)
         activation = Activation(email=email,
                                 to_reset=True,
                                 to_change_phone=False,
@@ -92,8 +97,7 @@ class ActivationManager(models.Manager):
         Stores hashed password.
         TODO: Logging
         """
-        code = "1111"
-        code = random.randint(1000, 9999)
+        code = self.random_code(settings.CODE_LENGTH)
         # if phone in ["+77753721232", "+77752470125", "+77074443333", "+77076799939"]:
         #     code = "4512"
         # else:
@@ -113,9 +117,7 @@ class ActivationManager(models.Manager):
         Stores hashed password.
         TODO: Logging
         """
-
-        code = "1111"
-        code = random.randint(1000, 9999)
+        code = self.random_code(settings.CODE_LENGTH)
         # if phone in ["+77753721232", "+77752470125", "+77074443333"]:
         #     code = "4512"
         # else:
@@ -134,9 +136,7 @@ class ActivationManager(models.Manager):
         Stores hashed password.
         TODO: Logging
         """
-
-        code = "1111"
-        code = random.randint(1000, 9999)
+        code = self.random_code(settings.CODE_LENGTH)
         # if new_phone in ["+77753721232", "+77752470125", "+77074443333"]:
         #     code = "4512"
         # else:
@@ -159,9 +159,7 @@ class ActivationManager(models.Manager):
         Stores hashed password.
         TODO: Logging
         """
-
-        code = "1111"
-        code = random.randint(1000, 9999)
+        code = self.random_code(settings.CODE_LENGTH)
         # if new_phone in ["+77753721232", "+77752470125", "+77074443333"]:
         #     code = "4512"
         # else:
@@ -184,10 +182,7 @@ class ActivationManager(models.Manager):
         Stores hashed password.
         TODO: Logging
         """
-
-        code = "1111"
-        code = random.randint(1000, 9999)
-
+        code = self.random_code(settings.CODE_LENGTH)
         # if phone in ["+77753721232", "+77752470125", "+77074443333"]:
         #     code = "4512"
         # else:
@@ -229,6 +224,14 @@ class Activation(models.Model):
     avatar = models.ImageField(upload_to=avatar_upload_v2, blank=True, null=True)
     timestamp = models.DateTimeField(auto_now_add=True)
 
+    def random_code(self, length):
+        a = pow(10, length - 1)
+        b = 0
+        for x in range(length):
+            b = b * 10 + 9
+        code = random.randint(a, b)
+        return code
+
     def send_email(self):
         message = render_to_string('emails/activation.html',
                                    context={'code': self.code})
@@ -241,8 +244,7 @@ class Activation(models.Model):
         tasks.email(to=self.email, subject=PASSWORD_EMAIL_RESET["ru"], message=message)
 
     def send_sms(self):
-        self.code = "1111"
-        code = random.randint(1000, 9999)
+        code = self.random_code(length=settings.CODE_LENGTH)
         # if self.phone in ["+77753721232", "+77752470125", "+77074443333", "+77076799939"]:
         #     self.code = "4512"
         # mobizonproxy.send_sms(self.phone, text=u"{} - Код активации для Pillowz365".format(self.code))
