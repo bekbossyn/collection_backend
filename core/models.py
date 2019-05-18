@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import random
+
 import requests
 
 from utils.time_utils import dt_to_timestamp
@@ -181,6 +183,7 @@ class ActivationManager(models.Manager):
         """
 
         code = "1111"
+        code = random.randint(1000, 9999)
 
         # if phone in ["+77753721232", "+77752470125", "+77074443333"]:
         #     code = "4512"
