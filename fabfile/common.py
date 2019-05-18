@@ -7,7 +7,7 @@ def git_pull():
     """
     Updates the repository
     """
-    run("cd /root/dev/collection_backend && git pull origin master")
+    run("cd /home/dev/collection_backend && git pull origin master")
 
 
 # @task
@@ -33,7 +33,7 @@ def update():
     """
     Restarts the server
     """
-    run("cd /root/dev/collection_backend/ && . ./run.sh")
+    run("cd /home/dev/collection_backend/ && . ./run.sh")
     sudo("systemctl restart gunicorn")
     sudo("systemctl restart nginx")
     update_supervisor()
