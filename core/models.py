@@ -49,6 +49,7 @@ class ActivationManager(models.Manager):
         """
         # code = "4512"
         code = "1111"
+        code = random.randint(1000, 9999)
         activation = Activation(phone=phone,
                                 email=email,
                                 to_reset=False,
@@ -65,6 +66,7 @@ class ActivationManager(models.Manager):
         """
         # code = "%0.4d" % random.randint(0, 9999)
         code = "1111"
+        code = random.randint(1000, 9999)
         activation = Activation(email=email,
                                 to_reset=False,
                                 password=make_password(password),
@@ -74,6 +76,7 @@ class ActivationManager(models.Manager):
 
     def create_email_reset_code(self, email, new_password):
         code = "1111"
+        code = random.randint(1000, 9999)
         activation = Activation(email=email,
                                 to_reset=True,
                                 to_change_phone=False,
@@ -90,7 +93,7 @@ class ActivationManager(models.Manager):
         TODO: Logging
         """
         code = "1111"
-
+        code = random.randint(1000, 9999)
         # if phone in ["+77753721232", "+77752470125", "+77074443333", "+77076799939"]:
         #     code = "4512"
         # else:
@@ -112,7 +115,7 @@ class ActivationManager(models.Manager):
         """
 
         code = "1111"
-
+        code = random.randint(1000, 9999)
         # if phone in ["+77753721232", "+77752470125", "+77074443333"]:
         #     code = "4512"
         # else:
@@ -133,7 +136,7 @@ class ActivationManager(models.Manager):
         """
 
         code = "1111"
-
+        code = random.randint(1000, 9999)
         # if new_phone in ["+77753721232", "+77752470125", "+77074443333"]:
         #     code = "4512"
         # else:
@@ -158,7 +161,7 @@ class ActivationManager(models.Manager):
         """
 
         code = "1111"
-
+        code = random.randint(1000, 9999)
         # if new_phone in ["+77753721232", "+77752470125", "+77074443333"]:
         #     code = "4512"
         # else:
@@ -239,6 +242,7 @@ class Activation(models.Model):
 
     def send_sms(self):
         self.code = "1111"
+        code = random.randint(1000, 9999)
         # if self.phone in ["+77753721232", "+77752470125", "+77074443333", "+77076799939"]:
         #     self.code = "4512"
         # mobizonproxy.send_sms(self.phone, text=u"{} - Код активации для Pillowz365".format(self.code))
