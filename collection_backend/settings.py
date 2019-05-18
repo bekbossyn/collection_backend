@@ -159,3 +159,10 @@ JWT_ALGORITHM = 'HS256'
 
 api_name = 'api/'
 api_version = 'v1/'
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'Systemx Kz'
+EMAIL_HOST_PASSWORD = 'Truesight7'
+FROM_EMAIL = 'systemxkz@gmail.com'
