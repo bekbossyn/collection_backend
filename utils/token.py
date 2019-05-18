@@ -20,7 +20,7 @@ def create_token(user, remove_others=False):
 
     #TODO Temporary, delete at production.
     # In order for a definite user to sign in from different devices.
-    remove_others = False
+    # remove_others = False
 
     info = {
         'id': user.id,

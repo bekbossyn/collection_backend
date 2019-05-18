@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Activation, Exchange
+from .models import Activation, Exchange, TokenLog
 
 
 @admin.register(Activation)
@@ -20,4 +20,11 @@ class ExchangeAdmin(admin.ModelAdmin):
     ordering = ('-timestamp',)
 
 
+@admin.register(TokenLog)
+class ExchangeAdmin(admin.ModelAdmin):
+    list_display = ('id', 'token', 'user', 'active',)
+
+    list_filter = ('data_and_time',)
+
+    ordering = ('-timestamp',)
 
