@@ -118,6 +118,7 @@ class MainUser(AbstractBaseUser, PermissionsMixin):
                 # "reviews": [r.json(user) for r in self.reviews.all()],
                 "verified": self.verified(),
                 # 'game_setting': self.game_setting.json(user),
+                "collections": self.collections.json(),
             }
         else:
             result = {
