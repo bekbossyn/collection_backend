@@ -164,7 +164,7 @@ EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'systemxkz@gmail.com'
-EMAIL_HOST_PASSWORD = 'Truesight7'
+EMAIL_HOST_PASSWORD = 'Truesight8'
 FROM_EMAIL = 'systemxkz@gmail.com'
 
 # for sms && email random code generation
