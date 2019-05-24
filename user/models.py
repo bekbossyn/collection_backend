@@ -104,6 +104,9 @@ class MainUser(AbstractBaseUser, PermissionsMixin):
 
     def json(self, short=False, user=None):
         if not short:
+            # user_collections = []
+            # for index, item in enumerate(user.collections.all()):
+            #     user_collections.append(item.json(user=self))
             result = {
                 "user_id": self.pk,
                 "phone": self.hidden_phone(user),
@@ -118,6 +121,8 @@ class MainUser(AbstractBaseUser, PermissionsMixin):
                 # "reviews": [r.json(user) for r in self.reviews.all()],
                 "verified": self.verified(),
                 # 'game_setting': self.game_setting.json(user),
+                # "collections": self.collections.json(),
+                "collections": [x.json(user=self) for x in user.collections.all()],
             }
         else:
             result = {
