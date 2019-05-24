@@ -38,6 +38,11 @@ USER_NOT_FOUND = {
     "kz": "Қолданушы табылмады",
     "en": "User not found",
 }
+COLLECTION_NOT_FOUND = {
+    "ru": "Коллекция не найдена",
+    "kz": "Коллекция табылмады",
+    "en": "Collection not found",
+}
 WRONG_ACTIVATION_KEY = {
     "ru": "Неверный код авторизации",
     "kz": "Авторизация коды қате",

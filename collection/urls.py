@@ -5,7 +5,7 @@ from . import views
 app_name = "collection"
 
 urlpatterns = [
-    # url(r'^info/$', views.info, name='info'),
+    url(r'^show_collection/$', views.show_collection, name='show_collection'),
     # url(r'^update_profile/$', views.update_profile, name='update_profile'),
     # url(r'^update_avatar/$', views.update_avatar, name='update_avatar'),
     # url(r'^remove_avatar/$', views.remove_avatar, name='remove_avatar'),

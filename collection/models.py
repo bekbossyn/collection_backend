@@ -24,6 +24,7 @@ class Collection(models.Model):
             "name": self.name,
             "words": [x.json(collection=self) for x in self.words.all()],
             "user_id": user.pk if user else None,
+            "owner_id": self.user.pk if self.user else None,
             # "collection": [x for x in self.collection],
             # "user": self.user.json(short=True),
             # "phone": self.hidden_phone(user),
@@ -61,6 +62,7 @@ class Word(models.Model):
         return {
             "data": self.data,
             "collection": self.collection.name if collection else None,
-            "user": self.user.pk if self.user else None,
+            "user_id": collection.user.pk if collection and collection.user else None,
+            "owner_id": self.user.pk if self.user else None,
             "users": [x for x in self.users],
         }
