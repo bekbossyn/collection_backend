@@ -349,6 +349,7 @@ def sign_up_complete(request):
     }
 
 
+# TODO change to user app
 @http.json_response()
 @http.requires_token()
 @http.required_parameters(["current_password", "new_password"])
@@ -374,6 +375,7 @@ def change_password(request, user):
     }
 
 
+# TODO change to user app
 @http.json_response()
 @http.requires_token()
 @http.required_parameters(["new_phone"])
@@ -399,6 +401,7 @@ def change_phone(request, user):
     }
 
 
+# TODO change to user app
 @http.json_response()
 @http.requires_token()
 @http.required_parameters(["new_phone", "code"])
@@ -440,6 +443,7 @@ def change_phone_complete(request, user):
     }
 
 
+# TODO change to user app
 @http.json_response()
 @http.requires_token()
 @http.required_parameters(["new_email"])
@@ -465,6 +469,7 @@ def change_email(request, user):
     }
 
 
+# TODO change to user app
 @http.json_response()
 @http.requires_token()
 @http.required_parameters(["new_email", "code"])
@@ -507,6 +512,7 @@ def change_email_complete(request, user):
     }
 
 
+# TODO change to user app
 @http.json_response()
 @http.required_parameters(["phone", "new_password"])
 @csrf_exempt
@@ -537,6 +543,7 @@ def reset_password(request):
     return http.code_response(code=codes.OK, message=messages.SMS_HAS_BEEN_SENT)
 
 
+# TODO change to user app
 @http.json_response()
 @http.required_parameters(["phone", "code"])
 @csrf_exempt
@@ -584,6 +591,7 @@ def reset_password_complete(request):
     }
 
 
+# TODO change to user app
 @http.json_response()
 @http.required_parameters(["email", "new_password"])
 @csrf_exempt
@@ -610,6 +618,7 @@ def reset_email_password(request):
     return http.code_response(code=codes.OK, message=messages.EMAIL_HAS_BEEN_SENT)
 
 
+# TODO change to user app
 @http.json_response()
 @http.required_parameters(["email", "code"])
 @csrf_exempt
@@ -810,36 +819,3 @@ def vk_login(request):
     email = info.get('email')
     phone = info.get('phone')
     return social_authenticate("vk", vk_id, email, phone, full_name)
-
-
-numbers = []
-for x in range(0, 10):
-    numbers.append(str(x))
-
-doubles = numbers
-doubles.append(".")
-
-kazakh_doubles = numbers
-kazakh_doubles.append(",")
-kazakh_doubles.append(".")
-
-
-def previous_date_fn(year, month, day):
-
-    year_int = int(year)
-    month_int = int(month)
-    day_int = int(day)
-
-    today = datetime.date(year_int, month_int, day_int)
-
-    yesterday = today - datetime.timedelta(days=1)
-
-    day = str(yesterday.day)
-
-    if len(day) < 2:
-        day = '0' + day
-    month = str(yesterday.month)
-    if len(month) < 2:
-        month = '0' + month
-    year = str(yesterday.year)
-    return year, month, day
